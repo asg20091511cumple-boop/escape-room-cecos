@@ -1,0 +1,335 @@
+
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CECOS | Missió Emergència</title>
+<style>
+:root {
+  --navy:#07182b;
+  --blue:#123b66;
+  --light:#e8f1fa;
+  --cyan:#42c5e8;
+  --green:#28b779;
+  --red:#e65d5d;
+  --white:#f5f8fc;
+  --muted:#a9bbce;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;background:radial-gradient(circle at top,#173b60 0,#07182b 55%,#040d18 100%);
+  color:var(--white);font-family:Arial,Helvetica,sans-serif;min-height:100vh;
+}
+header{
+  padding:17px 5%;display:flex;justify-content:space-between;align-items:center;
+  border-bottom:1px solid #ffffff20;background:#061426dd;
+}
+.brand{font-weight:800;letter-spacing:2px;font-size:19px}
+.brand span{color:var(--cyan)}
+.status{font-size:12px;color:#8fe2b9;letter-spacing:1px}
+main{width:min(900px,92%);margin:38px auto 70px}
+.panel{
+  background:#0d2239;border:1px solid #31516f;border-radius:16px;
+  padding:clamp(20px,4vw,38px);box-shadow:0 20px 60px #0005;
+}
+.kicker{color:var(--cyan);font-size:12px;font-weight:bold;letter-spacing:2px}
+h1{font-size:clamp(30px,6vw,52px);margin:12px 0;color:white}
+h2{font-size:27px;margin-top:8px}
+p{line-height:1.65;color:#d4e0ed}
+.muted{color:var(--muted);font-size:14px}
+.hero{
+  border-radius:12px;padding:27px;margin:22px 0;
+  background:linear-gradient(120deg,#123b66,#087c9c);
+}
+.hero strong{font-size:clamp(18px,3vw,25px)}
+.grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin:22px 0}
+.mission{
+  text-align:center;padding:14px 5px;background:#142e49;border:1px solid #35516c;
+  border-radius:10px;color:#a9bbce;font-size:12px;
+}
+.mission b{display:block;font-size:22px;margin-bottom:7px;color:#fff}
+.mission.done{border-color:var(--green);background:#123c36;color:#a7f0cf}
+button{
+  cursor:pointer;border:0;border-radius:9px;padding:13px 19px;
+  font-weight:bold;font-size:14px;background:var(--cyan);color:#062039;
+}
+button:hover{filter:brightness(1.1)}
+button:disabled{opacity:.4;cursor:not-allowed}
+.secondary{background:#243e59;color:white;border:1px solid #49627d}
+input,textarea{
+  width:100%;padding:14px;background:#07182b;border:1px solid #48627c;
+  border-radius:8px;color:white;font:inherit;margin:8px 0 16px;
+}
+label{font-size:13px;color:#c6d7e8;font-weight:bold}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
+.option{
+  display:block;width:100%;text-align:left;margin:10px 0;padding:15px;
+  background:#142e49;border:1px solid #3b5874;color:white;border-radius:9px;
+}
+.option.selected{border:2px solid var(--cyan);background:#174467}
+.feedback{padding:13px;border-radius:8px;margin-top:15px;line-height:1.5}
+.good{background:#123c36;color:#a7f0cf;border:1px solid #25865e}
+.bad{background:#48252b;color:#ffd0d0;border:1px solid #a84b55}
+.progress{height:8px;background:#263c53;border-radius:10px;overflow:hidden;margin:15px 0 25px}
+.progress span{display:block;height:100%;background:var(--cyan);width:0;transition:.3s}
+.codeboxes{display:flex;gap:9px;justify-content:center;margin:25px 0}
+.codeboxes span{width:48px;height:58px;display:grid;place-items:center;background:#07182b;
+border:1px solid #52718e;border-radius:8px;font-size:27px;font-weight:bold}
+footer{text-align:center;color:#8198ae;font-size:12px;padding:25px}
+.small{font-size:12px;color:#9fb3c8}
+.hidden{display:none!important}
+hr{border:0;border-top:1px solid #ffffff20;margin:24px 0}
+@media(max-width:560px){
+  .grid{grid-template-columns:repeat(5,1fr);gap:5px}
+  .mission{font-size:10px;padding:10px 2px}
+  .mission b{font-size:18px}
+  header{padding:14px 4%}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand">✚ CECOS <span>| SEM</span></div>
+  <div class="status">● TERMINAL DE FORMACIÓ</div>
+</header>
+
+<main>
+<section id="welcome" class="panel">
+  <div class="kicker">CENTRAL DE COORDINACIÓ D'EMERGÈNCIES SANITÀRIES</div>
+  <h1>MISSIÓ<br><span style="color:#42c5e8">EMERGÈNCIA</span></h1>
+  <p>El sistema informàtic del CECOS ha quedat bloquejat després de rebre una alerta d'un accident greu. Necessitem recuperar cinc codis per restablir-ne el funcionament.</p>
+  <div class="hero">
+    <strong>🚨 ALERTA OPERATIVA · 19.42 H</strong>
+    <p>Has estat seleccionat/da per participar en la missió. Resol les cinc proves, recupera els cinc dígits i desbloqueja la central.</p>
+  </div>
+  <label for="student">IDENTIFICACIÓ DE L'ALUMNE/A</label>
+  <input id="student" maxlength="70" placeholder="Escriu el teu nom i cognoms">
+  <p class="muted">5 missions · 30-40 minuts · Modalitat individual</p>
+  <button onclick="startGame()">ACCEDIR A LA MISSIÓ →</button>
+</section>
+
+<section id="game" class="panel hidden">
+  <div class="kicker">CECOS / PROTOCOL DE FORMACIÓ</div>
+  <div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap">
+    <h2 id="missionTitle">MISSIÓ 01</h2>
+    <span class="small" id="counter">PROVA 1 DE 5</span>
+  </div>
+  <div class="progress"><span id="bar"></span></div>
+  <div class="grid" id="missionGrid">
+    <div class="mission"><b>01</b>URGÈNCIA</div>
+    <div class="mission"><b>02</b>TELÈFONS</div>
+    <div class="mission"><b>03</b>SEM</div>
+    <div class="mission"><b>04</b>PAS</div>
+    <div class="mission"><b>05</b>SEGURETAT</div>
+  </div>
+  <div class="kicker" id="category">PROTOCOL D'ACTUACIÓ</div>
+  <h2 id="question"></h2>
+  <div id="options"></div>
+  <div class="actions">
+    <button class="secondary" id="hintButton" onclick="showHint()">💡 SOL·LICITAR PISTA</button>
+    <button id="checkButton" onclick="checkAnswer()">VALIDAR RESPOSTA</button>
+  </div>
+  <div id="feedback" class="hidden"></div>
+  <div class="actions hidden" id="nextArea">
+    <button onclick="nextMission()">CONTINUAR →</button>
+  </div>
+  <p class="small" id="hintText"></p>
+</section>
+
+<section id="finalCode" class="panel hidden">
+  <div class="kicker">CECOS / AUTENTICACIÓ FINAL</div>
+  <h1>CODI DE<br><span style="color:#42c5e8">REACTIVACIÓ</span></h1>
+  <p>Has completat les cinc missions. Ara introdueix els cinc dígits que has recuperat.</p>
+  <div class="codeboxes" id="codeBoxes">
+    <span>?</span><span>?</span><span>?</span><span>?</span><span>?</span>
+  </div>
+  <label for="secretCode">CODI SECRET</label>
+  <input id="secretCode" maxlength="5" inputmode="numeric" placeholder="Introdueix els 5 dígits">
+  <button onclick="unlockSystem()">DESBLOQUEJAR CECOS</button>
+  <div id="codeFeedback" class="hidden"></div>
+</section>
+
+<section id="report" class="panel hidden">
+  <div class="kicker">CECOS / INFORME DE TANCAMENT</div>
+  <h1>MISSIÓ <span style="color:#55d99a">COMPLETADA</span></h1>
+  <div class="hero">
+    <strong>✓ SISTEMA RESTABLERT</strong>
+    <p>Has superat les cinc proves de formació. Abans de tancar la sessió, completa l'informe professional.</p>
+  </div>
+  <label for="answer1">1. Per què és important la seguretat de l'escena?</label>
+  <textarea id="answer1" rows="3" placeholder="Escriu la teva resposta..."></textarea>
+  <label for="answer2">2. Quina relació hi ha entre el SEM i el CECOS?</label>
+  <textarea id="answer2" rows="3" placeholder="Escriu la teva resposta..."></textarea>
+  <label for="answer3">3. Quina és la responsabilitat principal d'un TES abans d'intervenir?</label>
+  <textarea id="answer3" rows="3" placeholder="Escriu la teva resposta..."></textarea>
+  <button onclick="downloadReport()">DESCARREGAR INFORME PER LLIURAR</button>
+  <p class="small">Desa l'informe i adjunta'l a la tasca corresponent de Google Classroom.</p>
+</section>
+</main>
+
+<footer>CECOS · AULA VIRTUAL TES<br>Formació i simulació professional · Unitat 01</footer>
+
+<script>
+const missions = [
+{
+ title:"MISSIÓ 01 — URGÈNCIA O EMERGÈNCIA?",
+ category:"CLASSIFICACIÓ DE LES SITUACIONS",
+ question:"Una persona cau sobtadament a terra. No respon quan se li parla i no respira amb normalitat. Quina classificació correspon a aquesta situació?",
+ options:["A. Urgència lleu.","B. Emergència sanitària.","C. Consulta programada."],
+ correct:1, digit:"2",
+ hint:"Hi ha un risc vital immediat i cal una resposta urgent."
+},
+{
+ title:"MISSIÓ 02 — ELS TELÈFONS D'EMERGÈNCIES",
+ category:"COMUNICACIÓ I ACTIVACIÓ",
+ question:"Has de comunicar una emergència greu que necessita una resposta coordinada dels serveis d'emergències. Quin número únic europeu has de trucar?",
+ options:["A. 061","B. 112","C. 091"],
+ correct:1, digit:"2",
+ hint:"És el número únic europeu d'emergències."
+},
+{
+ title:"MISSIÓ 03 — SEM I CECOS",
+ category:"SISTEMA D'EMERGÈNCIES MÈDIQUES",
+ question:"El CECOS rep una demanda d'assistència sanitària i participa en la coordinació dels recursos necessaris. Quina funció descriu millor aquesta tasca?",
+ options:[
+ "A. Gestionar exclusivament les visites hospitalàries programades.",
+ "B. Coordinar les demandes d'assistència i els recursos sanitaris d'emergència.",
+ "C. Realitzar únicament el manteniment dels vehicles."
+ ],
+ correct:1, digit:"2",
+ hint:"Pensa en la coordinació de les demandes i dels recursos assistencials."
+},
+{
+ title:"MISSIÓ 04 — CONDUCTA PAS",
+ category:"PROTOCOL D'ACTUACIÓ",
+ question:"Arribes a un accident de trànsit i observes diversos riscos a la zona. Quina és la seqüència correcta de la conducta PAS?",
+ options:["A. Socórrer, protegir i avisar.","B. Avisar, socórrer i protegir.","C. Protegir, avisar i socórrer."],
+ correct:2, digit:"3",
+ hint:"Primer assegura l'entorn, després comunica l'emergència i finalment ajuda."
+},
+{
+ title:"MISSIÓ 05 — SEGURETAT DE L'ESCENA",
+ category:"AUTOPROTECCIÓ",
+ question:"Arribes a un accident i observes vehicles malmesos, vidres a terra i trànsit circulant molt a prop. Quina ha de ser la teva primera prioritat?",
+ options:[
+ "A. Apropar-te ràpidament a les víctimes.",
+ "B. Començar a moure els vehicles.",
+ "C. Valorar la seguretat de l'escena i identificar els riscos."
+ ],
+ correct:2, digit:"3",
+ hint:"La seguretat dels professionals i de les víctimes és prioritària."
+}
+];
+
+let current=0, selected=-1, completed=[], studentName="";
+let hintUsed=0, startTime=null;
+
+function show(id){
+ ["welcome","game","finalCode","report"].forEach(x=>document.getElementById(x).classList.add("hidden"));
+ document.getElementById(id).classList.remove("hidden");
+ window.scrollTo(0,0);
+}
+function startGame(){
+ studentName=document.getElementById("student").value.trim();
+ if(!studentName){alert("Introdueix el teu nom abans d'accedir a la missió.");return;}
+ startTime=Date.now();
+ show("game");
+ renderMission();
+}
+function renderMission(){
+ const m=missions[current];
+ selected=-1;
+ document.getElementById("missionTitle").textContent=m.title;
+ document.getElementById("counter").textContent=`PROVA ${current+1} DE 5`;
+ document.getElementById("category").textContent=m.category;
+ document.getElementById("question").textContent=m.question;
+ document.getElementById("bar").style.width=(current/5*100)+"%";
+ document.getElementById("options").innerHTML="";
+ m.options.forEach((o,i)=>{
+  const b=document.createElement("button");
+  b.className="option";b.textContent=o;
+  b.onclick=()=>{
+   selected=i;
+   document.querySelectorAll(".option").forEach(x=>x.classList.remove("selected"));
+   b.classList.add("selected");
+   document.getElementById("feedback").classList.add("hidden");
+  };
+  document.getElementById("options").appendChild(b);
+ });
+ document.getElementById("feedback").classList.add("hidden");
+ document.getElementById("nextArea").classList.add("hidden");
+ document.getElementById("hintText").textContent="";
+ document.getElementById("hintButton").disabled=false;
+ document.getElementById("checkButton").disabled=false;
+ document.getElementById("hintButton").textContent="💡 SOL·LICITAR PISTA";
+ document.querySelectorAll(".mission").forEach((el,i)=>el.classList.toggle("done",completed.includes(i)));
+}
+function showHint(){
+ document.getElementById("hintText").textContent="PISTA: "+missions[current].hint;
+ document.getElementById("hintButton").disabled=true;
+ hintUsed++;
+}
+function checkAnswer(){
+ if(selected<0){alert("Selecciona una resposta abans de validar.");return;}
+ const m=missions[current], box=document.getElementById("feedback");
+ box.classList.remove("hidden","good","bad");
+ if(selected===m.correct){
+  if(!completed.includes(current))completed.push(current);
+  box.classList.add("good");
+  box.innerHTML="✓ <strong>RESPOSTA CORRECTA</strong><br>Missió superada. Has recuperat el dígit: <strong style='font-size:24px'>"+m.digit+"</strong>";
+  document.getElementById("checkButton").disabled=true;
+  document.getElementById("nextArea").classList.remove("hidden");
+  document.querySelectorAll(".mission")[current].classList.add("done");
+  document.getElementById("bar").style.width=(completed.length/5*100)+"%";
+ }else{
+  box.classList.add("bad");
+  box.textContent="✕ Codi incorrecte. Revisa la situació, pensa en el protocol i torna-ho a intentar.";
+ }
+}
+function nextMission(){
+ if(current<4){current++;renderMission();}
+ else{
+  document.getElementById("codeBoxes").innerHTML=completed.sort((a,b)=>a-b).map(i=>"<span>"+missions[i].digit+"</span>").join("");
+  show("finalCode");
+ }
+}
+function unlockSystem(){
+ const code=document.getElementById("secretCode").value.trim();
+ const fb=document.getElementById("codeFeedback");
+ fb.classList.remove("hidden","good","bad");
+ if(code==="22233"){
+  fb.classList.add("good");
+  fb.textContent="✓ AUTENTICACIÓ CORRECTA. Accés autoritzat a l'informe final.";
+  setTimeout(()=>show("report"),900);
+ }else{
+  fb.classList.add("bad");
+  fb.textContent="✕ CODI INCORRECTE. Revisa els cinc dígits recuperats.";
+ }
+}
+function downloadReport(){
+ const a1=document.getElementById("answer1").value.trim();
+ const a2=document.getElementById("answer2").value.trim();
+ const a3=document.getElementById("answer3").value.trim();
+ if(!a1||!a2||!a3){alert("Completa les tres preguntes de l'informe abans de descarregar-lo.");return;}
+ const mins=Math.round((Date.now()-startTime)/60000);
+ const content=
+ "CECOS - AULA VIRTUAL TES\nINFORME DE MISSIÓ: MISSIÓ EMERGÈNCIA\n"+
+ "Alumne/a: "+studentName+"\n"+
+ "Data: "+new Date().toLocaleDateString("ca-ES")+"\n"+
+ "Temps emprat aproximat: "+mins+" minuts\n"+
+ "Missions superades: "+completed.length+"/5\n\n"+
+ "1. SEGURETAT DE L'ESCENA\n"+a1+"\n\n"+
+ "2. RELACIÓ SEM I CECOS\n"+a2+"\n\n"+
+ "3. RESPONSABILITAT DEL TES\n"+a3+"\n\n"+
+ "CECOS - Formació i simulació professional";
+ const blob=new Blob([content],{type:"text/plain;charset=utf-8"});
+ const url=URL.createObjectURL(blob);
+ const link=document.createElement("a");
+ link.href=url;link.download="Informe_CECOS_"+studentName.replace(/[^a-z0-9]/gi,"_")+".txt";
+ link.click();URL.revokeObjectURL(url);
+ alert("Informe descarregat. Ara el pots adjuntar a Google Classroom.");
+}
+</script>
+</body>
+</html>
